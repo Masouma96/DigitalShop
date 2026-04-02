@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { getProducts } from '@/lib/products';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 
@@ -58,7 +57,23 @@ export default function CartPage() {
 
   useEffect(() => {
     setCartItems(getCartItems());
-    setProducts([...getProducts(), ...getLocalProducts()]);
+
+    async function loadProducts() {
+      try {
+        const response = await fetch('/api/products');
+        if (!response.ok) {
+          setProducts(getLocalProducts());
+          return;
+        }
+
+        const apiProducts: Product[] = await response.json();
+        setProducts([...apiProducts, ...getLocalProducts()]);
+      } catch {
+        setProducts(getLocalProducts());
+      }
+    }
+
+    loadProducts();
   }, []);
 
   const mergedProducts = useMemo(() => {

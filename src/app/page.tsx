@@ -10,8 +10,8 @@ import {
 } from '@/components/ui/card';
 import { getFeaturedProducts } from '@/lib/products';
 
-export default function Home() {
-  const featured = getFeaturedProducts();
+export default async function Home() {
+  const featured = await getFeaturedProducts();
 
   return (
     <main className="overflow-hidden">

@@ -30,12 +30,12 @@ export function Banner() {
               <Card>
                 <CardContent className=" p-0 ">
                   <div className="relative w-full h-[400px]">
-                  <Image
-                    src={image}
-                    alt="banner"
-                    fill
-                    className="object-cover "
-                  />
+                    <Image
+                      src={image}
+                      alt="banner"
+                      fill
+                      className="object-cover "
+                    />
                   </div>
                 </CardContent>
               </Card>

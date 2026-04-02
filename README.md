@@ -10,14 +10,14 @@ Build a **modern, scalable, and secure e-commerce platform** with crypto payment
 
 ## 🛠 Tech Stack
 
-| Layer       | Technology |
-|------------|------------|
-| Frontend   | Next.js 15, React 19 |
-| State Mgmt | React Query |
+| Layer      | Technology               |
+| ---------- | ------------------------ |
+| Frontend   | Next.js 15, React 19     |
+| State Mgmt | React Query              |
 | UI         | Tailwind CSS + ShadCN UI |
-| Database   | PostgreSQL (Prisma ORM) |
-| Auth       | Clerk Auth |
-| Storage    | Cloudinary |
+| Database   | PostgreSQL (Prisma ORM)  |
+| Auth       | Clerk Auth               |
+| Storage    | Cloudinary               |
 | Payments   |
 
 ---
@@ -41,3 +41,4 @@ nextjs react e-commerce prisma tailwind-css clerk-auth fullstack
 
 📄 License
 MIT License
+```

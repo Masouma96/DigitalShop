@@ -18,9 +18,16 @@ function getCartCount() {
   }
 }
 
-function isAdminLoggedIn() {
+async function isAdminLoggedIn() {
   if (typeof window === 'undefined') return false;
-  return Boolean(window.localStorage.getItem('digital-shop-admin'));
+  try {
+    const response = await fetch('/api/auth/me');
+    if (!response.ok) return false;
+    const data = await response.json();
+    return Boolean(data.authenticated);
+  } catch {
+    return false;
+  }
 }
 
 export default function ShopHeader() {
@@ -28,18 +35,20 @@ export default function ShopHeader() {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    const handleStorage = () => {
+    const handleUpdate = async () => {
       setCartCount(getCartCount());
-      setAdmin(isAdminLoggedIn());
+      setAdmin(await isAdminLoggedIn());
     };
 
-    handleStorage();
-    window.addEventListener('storage', handleStorage);
-    window.addEventListener('digital-shop-cart-updated', handleStorage);
+    handleUpdate();
+    window.addEventListener('storage', handleUpdate);
+    window.addEventListener('digital-shop-cart-updated', handleUpdate);
+    window.addEventListener('digital-shop-auth-updated', handleUpdate);
 
     return () => {
-      window.removeEventListener('storage', handleStorage);
-      window.removeEventListener('digital-shop-cart-updated', handleStorage);
+      window.removeEventListener('storage', handleUpdate);
+      window.removeEventListener('digital-shop-cart-updated', handleUpdate);
+      window.removeEventListener('digital-shop-auth-updated', handleUpdate);
     };
   }, []);
 
