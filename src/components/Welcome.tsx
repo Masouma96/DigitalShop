@@ -1,5 +1,6 @@
-import { Link, MonitorSmartphone } from 'lucide-react';
 import React from 'react';
+import NextLink from 'next/link';
+import { Link as LinkIcon, MonitorSmartphone } from 'lucide-react';
 import { Button } from './ui';
 
 function Welcome() {
@@ -10,8 +11,11 @@ function Welcome() {
         <MonitorSmartphone />
         <h1 className="text-2xl font-bold text-grey-600">Digital Shop</h1>
       </div>
-      <Button asChild className="mt-6">
-        <Link href='/products'> Go to product</Link>
+      <Button asChild variant="secondary" className="mt-6">
+        <NextLink href="/products" className="inline-flex items-center gap-2">
+          <LinkIcon className="size-4" />
+          Browse products
+        </NextLink>
       </Button>
     </div>
   );
